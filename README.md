@@ -19,13 +19,11 @@ Prior to running the steps under Instructions, you will need access to an AWS Ac
 
 ### Instructions
 
-1. Create stack with command 'aws cloudformation create-stack --stack-name sm-fs-streaming-agg-stack --template-body file://template.yaml --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region ap-south-1'
+1. Create stack with command 'aws cloudformation create-stack --stack-name cc-transactions-stack --template-body file://template.yaml --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --region ap-south-1'
 
 3. Once the stack is complete, browse to Amazon SageMaker in the AWS console and click on the 'Notebook Instances' tab on the left. 
 4. Click either 'Jupyter' or 'JupyterLab' to access the SageMaker Notebook instance. The Cloudformation template has cloned this git repository into the notebook instance for you. All of the example code to work through is in the notebooks directory. 
 
-**To use these notebooks from an existing SageMaker Studio domain, add a new Studio user and select the IAM role that was created by the CloudFormation stack. Open Studio for that new user, and git clone this repo. All other steps are the same.**
-#### Running the Notebooks
 
 There are a series of notebooks which should be run in order. Follow the step-by-step guide in each notebook:
 
@@ -41,7 +39,7 @@ There are a series of notebooks which should be run in order. Follow the step-by
 - View the Lambda function that receives the initial kinesis events and writes to the FeatureStore.
 - View the Lambda function that receives the final kinesis events and triggers the model prediction.
 
-### **CLEAN UP - IMPORTANT**
+### **CLEAN UP**
 To destroy the AWS resources created as part of this example, complete the following two steps:
 1. Run all cells in [notebooks/5_cleanup.ipynb](./notebooks/5_cleanup.ipynb) 
-2. Go to CloudFormation in the AWS console, select `sm-fs-streaming-agg-stack` and click 'Delete'.
+2. Delete stack with command 'aws cloudformation delete-stack --stack-name cc-transactions-stack'
